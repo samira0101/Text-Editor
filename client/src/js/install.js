@@ -23,3 +23,8 @@ installBtn.addEventListener('click', async () => {
 
     installBtn.classList.toggle('hidden', true);
 });
+
+// Added an handler for the `appinstalled` event
+window.addEventListener('appinstalled', (event) => {
+    window.deferredPrompt = null;
+});
