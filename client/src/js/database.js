@@ -28,3 +28,22 @@ export const putDb = async (id, value) => {
   const res = await req;
   console.log('data saved to the jateDB', res);
 };
+
+// GET function
+export const getDb = async (value) => {
+  console.log('Getting data from the jateDB');
+  // connect to DB and version we want to use
+  const jateDb = await openDB('jate', 1);
+  // make new transaction...need to specify the DB we are posting to and the data privileges. 
+  const tx = jateDb.transaction('jate', 'readwrite');
+  // open the object store
+  const objStore = tx.objectStore('jate');
+  // use the .getAll() method to grab all the content in the DB
+  const req = objStore.getAll()
+  // confirm the data was fetched
+  const res = await req;
+  console.log('data saved to the jateDB', res);
+};
+
+
+initdb();
